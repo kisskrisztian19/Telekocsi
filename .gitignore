@@ -14,7 +14,7 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
+#[Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
@@ -23,7 +23,7 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
+#[Bb]in/
 [Oo]bj/
 [Ll]og/
 
@@ -338,3 +338,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Telekocsi/bin/Debug/Telekocsi.exe
+/Telekocsi/bin/Debug/Telekocsi.exe.config
+/TelekocsiForm/bin/Debug/TelekocsiForm.exe
+/TelekocsiForm/bin/Debug/TelekocsiForm.exe.config

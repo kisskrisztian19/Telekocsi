@@ -98,7 +98,6 @@ namespace Telekocsi
                 Igenyek.Add(new Igenylo(seged[0], seged[1], seged[2], int.Parse(seged[3])));
             }
             olvas.Close();
-            int db = 0;
             Console.WriteLine("5. Feladat");
             foreach (var h in Hirdetes)
             {

@@ -14,7 +14,7 @@ namespace TelekocsiForm
         public string Telszam { get; private set; }
         public int Ferohely { get; private set; }
         public string Utvonal { get; private set; }
-        public Hirdetok(string indulas, string cel, string rendszam, string telszam, int ferohely)
+        public Auto(string indulas, string cel, string rendszam, string telszam, int ferohely)
         {
             Indulas = indulas;
             Cel = cel;
@@ -23,4 +23,5 @@ namespace TelekocsiForm
             Ferohely = ferohely;
             Utvonal = Indulas + "-" + Cel;
         }
+    }
 }
