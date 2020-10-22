@@ -67,7 +67,8 @@ namespace Telekocsi
                 Console.WriteLine("4. Feladat");
                 Console.WriteLine($"\t{max} - {utv}"); */
             #endregion
-
+            int max = 0;
+            string utv = "";
             var utvonalak = from h in Hirdetes
                             orderby h.Utvonal
                             group h by h.Utvonal into temp
@@ -75,9 +76,16 @@ namespace Telekocsi
 
             foreach (var ut in utvonalak)
             {
-                Console.WriteLine($"{ut.Key} -> {ut.Count()}");
+                int fh = ut.Sum( x => x.Ferohely );
+                if (max < fh)
+                {
+                    max = fh;
+                    utv = ut.Key;
+                }
+                
             }
-
+            Console.WriteLine("4. Feladat");
+            Console.WriteLine($"\t{utv} - {max}");
 
         } 
         static void OtodikFeladat()
@@ -90,7 +98,7 @@ namespace Telekocsi
                 Igenyek.Add(new Igenylo(seged[0], seged[1], seged[2], int.Parse(seged[3])));
             }
             olvas.Close();
-
+            int db = 0;
             Console.WriteLine("5. Feladat");
             foreach (var h in Hirdetes)
             {
@@ -107,16 +115,21 @@ namespace Telekocsi
         {
             Console.WriteLine("6. Feladat (utasuzenetek.txt)");
             StreamWriter iras = new StreamWriter("utasuzenetek.txt");
-            foreach (var i in Igenyek)
+            foreach (var ig in Igenyek)
             {
-                foreach (var h in Hirdetes)
+                int i = ig.VanAuto(Hirdetes);
+
+                if (i > -1)
                 {
-                    if (h.Indulas == i.Indulas && h.Cel == i.Cel && h.Ferohely >= i.Emberek)
-                    {
-                        iras.WriteLine($"{i.Azon}: Rendszám: {h.Rendszam}, Telefonszám: {h.Telszam}");
-                    }
+                    iras.WriteLine($"{ig.Azon}: Rendszám:{Hirdetes[i].Rendszam} Telefonszám:{Hirdetes[i].Telszam}");
                 }
+                else
+                {
+                    iras.WriteLine($"{ig.Azon}: Sajnos nem sikerült autót találni");
+                }
+                iras.WriteLine();
             }
+            iras.Close();
         }
         static void Main(string[] args)
         {
@@ -125,7 +138,7 @@ namespace Telekocsi
             HarmadikFeladat();
             NegyedikFeladat();
             OtodikFeladat();
-            //HatodikFeladat();
+            HatodikFeladat();
             Console.ReadLine();
         }
     }
